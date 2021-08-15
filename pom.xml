@@ -86,61 +86,44 @@
 
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>Regression</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <version>3.0.0-M5</version>
-                            <configuration>
-                                <suiteXmlFiles>
-                                    <suiteXmlFile>runClasses.xml</suiteXmlFile>
-                                </suiteXmlFiles>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
-            <id>Smoke</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <version>3.0.0-M5</version>
-                            <configuration>
-                                <suiteXmlFiles>
-                                    <suiteXmlFile>runClasses.xml</suiteXmlFile>
-                                </suiteXmlFiles>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-    </profiles>
     <build>
-        <pluginManagement>
+        <!-- To define the plugin version in your parent POM -->
             <plugins>
                 <plugin>
+                    <!-- testler fail olsa bile tamamını calıstırmaya yarar  -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                    <configuration>
+                        <testFailureIgnore>true</testFailureIgnore>
+                        <skipTests>false</skipTests>
+                        <includes>
+                            <include>**/runners/*Test*.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <!-- testlerimiz maven üzerinden calıstırmaya yarar  -->
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version>3.0.0-M1</version>
                     <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>runClasses.xml</suiteXmlFile>
-                        </suiteXmlFiles>
+                        <parallel>classes</parallel>
+                        <forkMode>perthread</forkMode>
+                        <threadCount>4</threadCount>
+                        <reuseForks>false</reuseForks>
+                        <argLine>-Duser.language=en</argLine>
+                        <argLine>-Xmx1024m</argLine>
+                        <argLine>-XX:MaxPermSize=256m</argLine>
+                        <argLine>-Dfile.encoding=UTF-8</argLine>
+                        <useFile>false</useFile>
+                        <includes>
+                            <include>**/runners/*Test*.java</include>
+                        </includes>
+                        <testFailureIgnore>true</testFailureIgnore>
                     </configuration>
                 </plugin>
             </plugins>
-        </pluginManagement>
     </build>
 
 
