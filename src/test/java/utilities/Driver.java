@@ -55,7 +55,7 @@ public class Driver {
                     break;
 
                 case "awsJenkins":
-                    System.setProperty("webdriver.chrome.driver","/usr/bin/chromedirver");
+                    System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("headless");
                     options.addArguments("disable-gpu");
