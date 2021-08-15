@@ -54,7 +54,7 @@ public class Driver {
                     driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
                     break;
 
-                case "awsJenkins":
+                /*case "awsJenkins":
                     System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
@@ -66,7 +66,7 @@ public class Driver {
                     options.setHeadless(true);
                     //options.addArguments("disable-gpu");
                     options.addArguments("--no-sandbox");
-                    driver = new ChromeDriver(options);
+                    driver = new ChromeDriver(options);*/
 
             }
         }
